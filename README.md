@@ -27,9 +27,9 @@ Hosting 9Router means running a single Node.js service with a persistent disk. T
 
 ## Implementation Details
 
-### Pre-set variables
+### Variables set in the template
 
-These are configured in `railway.toml` — you do not need to touch them. (`HOSTNAME=0.0.0.0` and `NODE_ENV=production` are already baked into the upstream image, so they are not repeated here.)
+`railway.toml` carries only `[build]` and `[deploy]` — Railway's config-as-code schema has no `[variables]` or `[[volumes]]` section, so these are defined in the template composer instead. Deployers do not need to touch them. (`HOSTNAME=0.0.0.0` and `NODE_ENV=production` are already baked into the upstream image, so they are not set at all.)
 
 | Variable | Value | Why |
 |---|---|---|
@@ -40,7 +40,7 @@ These are configured in `railway.toml` — you do not need to touch them. (`HOST
 | `REQUIRE_API_KEY` | `true` | Enforces a Bearer key on `/v1/*` — the endpoint is publicly reachable |
 | `ENABLE_REQUEST_LOGS` | `false` | Request/response bodies stay off by default; flip to `true` to debug |
 
-### Variables you must set
+### Variables the deployer must set
 
 | Variable | How to set it |
 |---|---|
@@ -50,6 +50,10 @@ These are configured in `railway.toml` — you do not need to touch them. (`HOST
 | `MACHINE_ID_SALT` | `${{ secret(32) }}` — salt for machine-ID hashing |
 
 `JWT_SECRET` is optional upstream (9Router generates one into the volume if unset), but setting it explicitly keeps existing sessions valid across a volume reset or a second instance.
+
+### Volume
+
+One volume mounted at `/app/data`, matching `DATA_DIR`. Attached in the composer (right-click the service → **Attach Volume**).
 
 ### No healthcheck path
 

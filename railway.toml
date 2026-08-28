@@ -1,3 +1,6 @@
+# Only [build], [deploy] and [environments] are read by Railway.
+# Variables and the /app/data volume are defined in the template composer,
+# not here — see README.md.
 [build]
 builder = "dockerfile"
 dockerfilePath = "Dockerfile"
@@ -5,14 +8,3 @@ dockerfilePath = "Dockerfile"
 [deploy]
 restartPolicyType = "on_failure"
 restartPolicyMaxRetries = 3
-
-[variables]
-PORT = "20128"
-DATA_DIR = "/app/data"
-BASE_URL = "https://${{RAILWAY_PUBLIC_DOMAIN}}"
-AUTH_COOKIE_SECURE = "true"
-REQUIRE_API_KEY = "true"
-ENABLE_REQUEST_LOGS = "false"
-
-[[volumes]]
-mountPath = "/app/data"
