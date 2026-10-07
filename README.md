@@ -2,7 +2,7 @@
 
 9Router is a self-hosted AI gateway that puts a single OpenAI-compatible endpoint in front of 40+ model providers and 100+ models. You point Claude Code, Cursor, Cline, Copilot, Codex, OpenCode or any OpenAI-compatible client at one `/v1` URL, and manage providers, keys, fallback order and spend from one dashboard — instead of pasting a different API key into every tool.
 
-[![Deploy on Railway](https://railway.app/button.svg)](https://railway.app/template/new?template=https://github.com/Amritasha/9router-railway)
+[![Deploy on Railway](https://railway.app/button.svg)](https://github.com/ZedTheGreatt/9router-railway.git)
 
 ## About Hosting 9Router
 
